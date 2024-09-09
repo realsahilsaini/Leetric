@@ -53,7 +53,6 @@ document.addEventListener('DOMContentLoaded', function() {
       }
 
       let data = await response.json();
-      console.log(data);
 
       if(data.status === 'error'){
         stats.style.display = 'none';
@@ -140,7 +139,6 @@ function updateUI(solved, total, label, progressCircle) {
 
   searchBtn.addEventListener('click', function (){
     const username = userInput.value;
-    console.log(username);
     
     if(validateUsername(username)){
       fetchUserData(username);
