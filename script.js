@@ -93,6 +93,35 @@ function updateUI(solved, total, label, progressCircle) {
     updateUI(mediumSolved, totalMediumQuestions, mediumLabel, mediumProgressCircle);
     updateUI(hardSolved, totalHardQuestions, hardLabel, hardProgressCircle);
 
+
+    const cardData = [
+      {
+        label: 'Acceptance rate',
+        value: parsedData.acceptanceRate
+      }, 
+      {
+        label: 'Ranking',
+        value: parsedData.ranking
+      },
+      {
+        label: 'Contribution points',
+        value: parsedData.contributionPoints
+      }
+    ]
+
+
+
+    // console.log(cardData);
+
+    cardStatsContainer.innerHTML = cardData.map((item)=>{
+      return `
+      <div class="stat-card">
+        <p class="label">${item.label}</p>
+        <p class="value">${item.value}</p>
+      </div>
+      `
+    }).join("")
+
   }
 
   searchBtn.addEventListener('click', function (){

@@ -6,7 +6,8 @@
 }
 
 body{
-  background-color: #181818;
+  /* background-color: #181818; */
+  background-color: aliceblue;
   color: white;
   height: 100vh;
   display: flex;
@@ -14,6 +15,10 @@ body{
   align-items: center;
   background-size: 40px 40px;
   background-image: radial-gradient(circle, #ffffff 1px, rgba(0, 0, 0, 0) 1px);
+  background-size: 40px 40px;
+  background-image:
+    linear-gradient(to right, grey 1px, transparent 1px),
+    linear-gradient(to bottom, grey 1px, transparent 1px);
 }
 
 .container{
@@ -119,21 +124,40 @@ body{
   z-index: 2;
 }
 
+.stats-card{
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.stat-card{
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  background-color: #005b18;
+  color: #fff;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 219, 73, 0.5);
+}
+
+.stat-card .label{
+  font-size:1rem;
+}
+.stat-card .value{
+  font-size:2rem;
+  font-weight: 900;
+}
+
 
 @media screen and (max-width: 646px){
   
   .container{
     padding: 1.5rem;
     margin: 0 2rem 0 2rem;
-  }
-
-  .easy-progress, .medium-progress, .hard-progress, .total-progress{
-    font-size: 0.7em;
-  }
-
-  .circle{
-    width: 70px;
-    height: 70px;
   }
 
   .user-input{
@@ -146,7 +170,4 @@ body{
     padding: 1rem;
   }
 
-
-
-  
 }
