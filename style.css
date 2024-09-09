@@ -124,6 +124,10 @@ body{
   z-index: 2;
 }
 
+.hidden{
+  display: none;
+}
+
 .stats-card{
   display: flex;
   flex-direction: row;

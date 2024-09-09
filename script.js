@@ -3,6 +3,8 @@ document.addEventListener('DOMContentLoaded', function() {
   const searchBtn = document.getElementById('search');
   const userInput = document.getElementById('user-input');
 
+  const user = document.querySelector('.user');
+
   const statsContainer = document.querySelector('.stats');
 
   const totalProgressCircle = document.querySelector('.total-progress');
@@ -16,6 +18,9 @@ document.addEventListener('DOMContentLoaded', function() {
   const totalLabel = document.getElementById('total-label');
 
   const cardStatsContainer = document.querySelector('.stats-card');
+  const stats = document.querySelector('.stats');
+
+  const errorMessage = document.createElement('p');
 
   function validateUsername(username) {
     if(username.trim() === '') {
@@ -38,6 +43,9 @@ document.addEventListener('DOMContentLoaded', function() {
     try{
       searchBtn.textContent = 'Searching...';
       searchBtn.disabled = true;
+      errorMessage.textContent = '';
+
+      
       const response = await fetch(url);
 
       if(!response.ok){
@@ -48,13 +56,15 @@ document.addEventListener('DOMContentLoaded', function() {
       console.log(data);
 
       if(data.status === 'error'){
+        stats.style.display = 'none';
         throw new Error(data.message);
+      }else{
+        displayUserData(data);
       }
 
-      displayUserData(data);
-
     }catch(error){
-      statsContainer.innerHTML = `<p class="error">${error.message}</p>`;
+      errorMessage.textContent = error.message;
+      user.appendChild(errorMessage);
     }finally{
       searchBtn.textContent = 'Search';
       searchBtn.disabled = false;
@@ -68,6 +78,7 @@ function updateUI(solved, total, label, progressCircle) {
   progressCircle.style.setProperty('--progress-degree', `${degree}%`);
 
   label.textContent = `${solved} / ${total}`;
+
 
 
 }
@@ -121,6 +132,9 @@ function updateUI(solved, total, label, progressCircle) {
       </div>
       `
     }).join("")
+
+
+    stats.style.display = 'block';
 
   }
 
